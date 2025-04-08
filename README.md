@@ -2,7 +2,7 @@
 
 ## Instalação de dependências no Ubuntu
 
-### Ubuntu/Debian
+### Ubuntu
 ```bash
 sudo apt update
 sudo apt install build-essential
