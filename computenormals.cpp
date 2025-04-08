@@ -159,12 +159,12 @@ void createHeightmapMesh(std::vector<Vertex>& vertices, std::vector<unsigned int
             
             // Generate procedural heightmap .x and normals .yzw
             // from simplex.h
-            glm::vec4 dfbm = Simplex::dfBm(glm::vec3(x,1,z), 16, 1.98f, 0.5f);
+            glm::vec3 dfbm = Simplex::dfBm(glm::vec2(x,z), 16, 1.01f, 0.5f);
             float y = dfbm.x;
             
             int index = i + width * j;
             vertices[index].position = glm::vec3(x, y, z);
-            vertices[index].normal = glm::vec3(dfbm.y, dfbm.z, dfbm.w);
+            vertices[index].normal = glm::vec3(dfbm.y, dfbm.z, 1);
         }
     }
     
@@ -217,8 +217,7 @@ out vec4 FragColor;
 
 void main() {
     vec3 norm = normalize(Normal);
-    vec3 color = 0.5 * norm + 0.5;
-    FragColor = vec4(color, 1.0);
+    FragColor = vec4(norm, 1.0);
 }
 )";
 
